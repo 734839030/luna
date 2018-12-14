@@ -101,17 +101,4 @@ public class AESEncryption {
 
         return null;
     }
-
-    public static void main(String[] args) {
-        String s = "hello,您好hello,您好hello,您好hello,您好hello,您好hello,您好hello,您好hello,您好hello,您好hello,您好hello,您好";
-        System.out.println("s:" + s);
-
-        String s1 = AESEncryption.encrypt(s, "12345678901234567890123456789012");
-        System.out.println("s1:" + s1);
-        
-        System.out.println("s2:"+AESEncryption.decrypt(s1, "12345678901234567890123456789012"));
-        
-
-    }
-
 }

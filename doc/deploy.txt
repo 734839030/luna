@@ -1,0 +1,13 @@
+mvn clean deploy -P release
+
+
+MAVEN SETTING
+ <server>
+  <id>oss</id>
+  <username>734839030@qq.com</username>
+  <password>XXXX</password>
+ </server>
+ 
+ 
+ oss sonatype pom
+ https://central.sonatype.org/pages/apache-maven.html
