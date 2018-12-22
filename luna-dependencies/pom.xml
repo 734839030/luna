@@ -4,10 +4,29 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.seezoon</groupId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.1-RELEASE</version>
 	<artifactId>luna-dependencies</artifactId>
+	<name>Luna Dependencies</name>
 	<packaging>pom</packaging>
 	<description>Luna Dependencies</description>
+	<url>http://www.seezoon.com</url>
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>huangdengfeng</name>
+			<email>734839030@qq.com</email>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git@github.com:734839030/luna.git</connection>
+		<developerConnection>scm:git@github.com:734839030/luna.git</developerConnection>
+		<url>git@github.com:734839030/luna.git</url>
+	</scm>
 	<properties>
 		<spring.boot.version>2.1.1.RELEASE</spring.boot.version>
 		<commons.io>2.6</commons.io>

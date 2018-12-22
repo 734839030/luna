@@ -4,7 +4,7 @@
 	<groupId>com.seezoon</groupId>
 	<artifactId>luna</artifactId>
 	<name>luna parent</name>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.1-RELEASE</version>
 	<packaging>pom</packaging>
 	<description>Luna Parent</description>
 	<url>http://www.seezoon.com</url>
@@ -34,9 +34,15 @@
 	<modules>
 		<module>luna-utils</module>
 		<module>luna-dependencies</module>
+		<module>luna-web</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+	  		    <groupId>com.seezoon</groupId>
+	  			<artifactId>luna-utils</artifactId>
+  			<version>${project.version}</version>
+  			</dependency>
 			<dependency>
 				<groupId>com.seezoon</groupId>
 				<artifactId>luna-dependencies</artifactId>

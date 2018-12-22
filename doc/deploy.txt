@@ -1,4 +1,12 @@
-mvn clean deploy -P release
+#gpg
+https://www.jianshu.com/p/5f6135e1925f
+gpg --gen-key
+gpg --list-keys
+
+gpg --keyserver hkp://pool.sks-keyservers.net --send-keys AA96D54D
+gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys AA96D54D
+
+mvn clean deploy -Dversion=1.0.0  -P release
 
 
 MAVEN SETTING
