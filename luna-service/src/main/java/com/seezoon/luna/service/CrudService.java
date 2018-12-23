@@ -1,0 +1,118 @@
+package com.seezoon.luna.service;
+
+import java.util.Date;
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.seezoon.luna.dao.CrudDao;
+import com.seezoon.luna.entity.BaseEntity;
+
+/**
+ * 增删改查
+ * 
+ * @author hdf 2018年3月31日
+ * @param <D>
+ * @param <T>
+ */
+public class CrudService<D extends CrudDao<T>, T extends BaseEntity> extends BaseTransactionService {
+
+	@Autowired
+	protected D d;
+	
+	public int save(T t) {
+		t.setCreateDate(new Date());
+		t.setUpdateDate(t.getCreateDate());
+		this.fillExts(t);
+		if (StringUtils.isEmpty(t.getCreateBy())) {
+			t.setCreateBy(this.getUserId());
+		}
+		t.setUpdateBy(t.getCreateBy());
+		int cnt = d.insert(t);
+		return cnt;
+	}
+
+	public int updateSelective(T t) {
+		Assert.notNull(t, "更新对象为空");
+		Assert.notNull(t.getId(), "更新对象id为空");
+		t.setUpdateDate(new Date());
+		if (StringUtils.isEmpty(t.getUpdateBy())) {
+			t.setUpdateBy(this.getUserId());
+		}
+		int cnt = d.updateByPrimaryKeySelective(t);
+		return cnt;
+	}
+
+	public int updateById(T t) {
+		Assert.notNull(t, "更新对象为空");
+		Assert.notNull(t.getId(), "更新对象id为空");
+		t.setUpdateDate(new Date());
+		fillExts(t);
+		if (StringUtils.isEmpty(t.getUpdateBy())) {
+			t.setUpdateBy(this.getUserId());
+		}
+		int cnt = d.updateByPrimaryKey(t);
+		return cnt;
+	}
+
+	@Transactional(readOnly = true)
+	public T findById(Object id) {
+		Assert.notNull(id, "id为空");
+		return d.selectByPrimaryKey(id);
+	}
+
+	public int deleteById(Object id) {
+		Assert.notNull(id, "id为空");
+		return d.deleteByPrimaryKey(id);
+	}
+
+	@Transactional(readOnly = true)
+	public List<T> findList(T t) {
+		fillExts(t);
+		return d.findList(t);
+	}
+
+	/**
+	 * 
+	 * @param t
+	 * @param pageNum
+	 * @param pageSize
+	 * @param count
+	 *            是否统计总数
+	 * @return
+	 */
+	@Transactional(readOnly = true)
+	public PageInfo<T> findByPage(T t, int pageNum, int pageSize, boolean count) {
+		PageHelper.startPage(pageNum, pageSize, count);
+		List<T> list = this.findList(t);
+		PageInfo<T> pageInfo = new PageInfo<T>(list);
+		return pageInfo;
+	}
+
+	@Transactional(readOnly = true)
+	public PageInfo<T> findByPage(T t, int pageNum, int pageSize) {
+		PageHelper.startPage(pageNum, pageSize, Boolean.TRUE);
+		List<T> list = this.findList(t);
+		PageInfo<T> pageInfo = new PageInfo<T>(list);
+		return pageInfo;
+	}
+	private String getUserId() {
+		OperatorUser operatorUser = OperatorUser.get();
+		return null != operatorUser?operatorUser.getUserId():null;
+	}
+	private void fillExts(T t) {
+		OperatorUser operatorUser = OperatorUser.get();
+		if (null != operatorUser && t != null) {
+			t.setSfExt1(operatorUser.getExt1());
+			t.setSfExt2(operatorUser.getExt2());
+			t.setSfExt3(operatorUser.getExt3());
+			t.setSfExt4(operatorUser.getExt4());
+		}
+	}
+
+}

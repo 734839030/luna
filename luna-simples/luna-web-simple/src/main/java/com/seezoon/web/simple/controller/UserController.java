@@ -14,10 +14,10 @@ import com.seezoon.web.simple.dto.User;
 public class UserController extends BaseController{
 
 	@GetMapping("/get")
-	public R get() {
+	public R get(String name) {
 		User user = new User();
 		user.setAge(11);
-		user.setName("dfenghuang");
+		user.setName(name);
 		return R.ok(user);
 	}
 	@RequestMapping("/save")

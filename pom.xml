@@ -36,6 +36,7 @@
 		<module>luna-dependencies</module>
 		<module>luna-web</module>
 		<module>luna-simples</module>
+		<module>luna-service</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
