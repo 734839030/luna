@@ -6,11 +6,17 @@ import java.util.Date;
 import org.apache.commons.text.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.seezoon.luna.utils.common.DateUtils;
+import com.seezoon.luna.web.dto.R;
+import com.seezoon.luna.web.exception.CodeMsgException;
+import com.seezoon.luna.web.exception.ErrorCodes;
 
 @ControllerAdvice
 public class AdviceController {
@@ -45,5 +51,46 @@ public class AdviceController {
 				setValue(DateUtils.parseDate(text));
 			}
 		});
+	}
+	
+
+	/**
+	 * Spring Assert 断言错误
+	 * @param e
+	 * @return
+	 */
+	@ResponseBody
+	@ExceptionHandler(IllegalArgumentException.class)
+	public R respoRneException(IllegalArgumentException e) {
+		logger.error("illegal argument exception ", e);
+		R r = R.error(ErrorCodes.PARAM_ILLEGAL_ERROR, e.getMessage());
+		return r;
+	}
+	@ResponseBody
+	@ExceptionHandler(CodeMsgException.class)
+	public R respoRneException(CodeMsgException e) {
+		logger.error("codeMsg exception ", e);
+		R r = R.error(e.getCode(), e.getMsg());
+		return r;
+	}
+	@ResponseBody
+	@ExceptionHandler(BindException.class)
+	public R bindException(BindException e) {
+		logger.error("bind exception ", e);
+		R r = R.error(ErrorCodes.PARAM_BIND_ERROR, "参数绑定错误:{0}",e.getMessage());
+		return r;
+	}
+	/**
+	 * 可以细化异常，spring 从小异常抓，抓到就不往后走
+	 * 
+	 * @param e
+	 * @return
+	 */
+	@ResponseBody
+	@ExceptionHandler(Exception.class)
+	public R exception(Exception e) {
+		logger.error("global exception ", e);
+		R r = R.error(ErrorCodes.UNKNOWN,e.getMessage());
+		return r;
 	}
 }
