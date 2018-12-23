@@ -19,7 +19,7 @@ import com.seezoon.luna.web.exception.ErrorCodes;
 @Aspect
 public class ParamsValidateAspect {
 
-	@Pointcut("execution(* com.seezoon.luna.web.controller.BaseController.BaseController+.*(..))")
+	@Pointcut("execution(* com.seezoon.luna.web.controller.BaseController+.*(..))")
 	private void anyMethod() {
 	}
 
