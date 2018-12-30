@@ -66,6 +66,11 @@ public class CrudService<D extends CrudDao<T>, T extends BaseEntity> extends Bas
 		return d.selectByPrimaryKey(id);
 	}
 
+	/**
+	 * 慎用删除
+	 * @param id
+	 * @return
+	 */
 	public int deleteById(Object id) {
 		Assert.notNull(id, "id为空");
 		return d.deleteByPrimaryKey(id);
