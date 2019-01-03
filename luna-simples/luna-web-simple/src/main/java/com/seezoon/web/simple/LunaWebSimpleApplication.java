@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
-import com.seezoon.luna.web.thread.MdcUtil;
+import com.seezoon.luna.utils.thread.MdcUtil;
 
 @SpringBootApplication
 public class LunaWebSimpleApplication extends  SpringBootServletInitializer{

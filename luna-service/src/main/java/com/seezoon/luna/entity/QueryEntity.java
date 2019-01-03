@@ -10,8 +10,6 @@ public class QueryEntity implements Serializable{
 	
 	public static final String ASC = "asc";
 	public static final String DESC = "desc";
-	//采用ext 查询时候 默认会加上qry_
-	private static final String EXT_QRY_PREFFIX = "qry_";
 
 	/**
 	 * 
@@ -52,9 +50,6 @@ public class QueryEntity implements Serializable{
 		}
 		if (ext == null) {
 			ext = new HashMap<>(1);
-		}
-		if (StringUtils.isNotEmpty(key)) {
-			key = EXT_QRY_PREFFIX + key;
 		}
 		ext.put(key, value);
 		return ext;

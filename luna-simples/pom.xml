@@ -10,6 +10,7 @@
   
    <modules>
 		<module>luna-web-simple</module>
+		<module>luna-service-simple</module>
   </modules>
   <properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -22,16 +23,53 @@
 		<dependencies>
 			<dependency>
 				<groupId>com.seezoon</groupId>
+				<version>${luna.version}</version>
+				<artifactId>luna-dependencies</artifactId>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.seezoon</groupId>
 				<artifactId>luna-web</artifactId>
 				<version>${luna.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.seezoon</groupId>
-				<artifactId>luna-dependencies</artifactId>
+				<artifactId>luna-service</artifactId>
 				<version>${luna.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- 没有以spring boot 为parent 插件需要配置executions，另外如果模块配置了该插件则不能打成依赖jar -->
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<executions>
+						<execution>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<mainClass>${start-class}</mainClass>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>

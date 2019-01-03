@@ -1,4 +1,4 @@
-package com.seezoon.luna.web.thread;
+package com.seezoon.luna.utils.thread;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
