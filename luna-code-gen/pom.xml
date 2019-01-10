@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.seezoon</groupId>
+    <artifactId>luna</artifactId>
+    <version>1.0.1-RELEASE</version>
+  </parent>
+  <artifactId>luna-code-gen</artifactId>
+  <name>luna-code-gen</name>
+  <url>http://www.seezoon.com</url>
+  <description>
+  	自动生成dao entity service，程序引入时候maven scope选择test
+  </description>
+  <dependencies>
+  		<dependency>
+  		    <groupId>com.seezoon</groupId>
+  			<artifactId>luna-utils</artifactId>
+  		</dependency>
+   		<dependency>
+  		    <groupId>org.springframework.boot</groupId>
+  			<artifactId>spring-boot-starter-logging</artifactId>
+  		</dependency>
+  		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+		</dependency>
+  </dependencies>
+</project>

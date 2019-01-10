@@ -11,7 +11,8 @@
    <modules>
 		<module>luna-web-simple</module>
 		<module>luna-service-simple</module>
-  </modules>
+		<module>luna-code-gen-simple</module>
+   </modules>
   <properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -36,6 +37,11 @@
 			<dependency>
 				<groupId>com.seezoon</groupId>
 				<artifactId>luna-service</artifactId>
+				<version>${luna.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.seezoon</groupId>
+				<artifactId>luna-code-gen</artifactId>
 				<version>${luna.version}</version>
 			</dependency>
 		</dependencies>

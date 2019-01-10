@@ -37,6 +37,7 @@
 		<druid.version>1.1.10</druid.version>
 		<pagehelper.version>5.1.6</pagehelper.version>
 		<guava.version>27.0.1-jre</guava.version>
+		<common.chain.version>1.2</common.chain.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -62,6 +63,11 @@
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-configuration2</artifactId>
 				<version>${commons.configuration2}</version>
+			</dependency>
+			<dependency>
+			<groupId>commons-chain</groupId>
+			<artifactId>commons-chain</artifactId>
+			<version>${common.chain.version}</version>
 			</dependency>
 			<dependency>
 			    <groupId>com.alibaba</groupId>

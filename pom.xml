@@ -37,6 +37,7 @@
 		<module>luna-web</module>
 		<module>luna-simples</module>
 		<module>luna-service</module>
+		<module>luna-code-gen</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
