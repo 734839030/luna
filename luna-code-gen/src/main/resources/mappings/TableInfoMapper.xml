@@ -22,7 +22,7 @@
 	(t.ordinal_position * 10) sort ,
 	t.column_comment comment ,
 	t.data_type dataType ,
-	t.character_maximum_length maxLength,
+	t.character_maximum_length maxlength,
 	t.column_type columnType,
 	t.column_key columnKey,
 	t.extra extra

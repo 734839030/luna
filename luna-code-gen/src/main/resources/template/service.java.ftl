@@ -6,7 +6,7 @@ import com.seezoon.service.modules.${moduleName}.dao.${className}Dao;
 import com.seezoon.service.modules.${moduleName}.entity.${className};
 
 /**
- * ${menuName}Service
+ * ${tableComment!}Service
  * Copyright &copy; 2018 powered by huangdf, All rights reserved.
  * @author hdf ${.now}
  */

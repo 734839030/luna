@@ -4,7 +4,7 @@ import com.seezoon.boot.common.dao.CrudDao;
 import com.seezoon.service.modules.${moduleName}.entity.${className};
 
 /**
- * ${menuName}Dao
+ * ${tableComment!}Dao
  * Copyright &copy; 2018 powered by huangdf, All rights reserved.
  * @author hdf ${.now}
  */

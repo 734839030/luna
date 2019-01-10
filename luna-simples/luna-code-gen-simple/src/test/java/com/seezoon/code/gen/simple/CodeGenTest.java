@@ -17,8 +17,7 @@ public class CodeGenTest {
 	@Autowired
 	private CodeGenService codeGenService;
 	@Test
-	public void gen() {
-		GenInfo genInfo = codeGenService.getGenInfo("user");
-		System.out.println(JSON.toJSONString(genInfo));
+	public void gen() throws Exception {
+		codeGenService.gen("user");
 	}
 }

@@ -13,6 +13,10 @@ public class GenInfo {
 	 */
 	private String tableComment;
 	/**
+	 * 主键类型
+	 */
+	private String pkJavaType;
+	/**
 	 * 是否自增主键
 	 */
 	private boolean autoIncrement;
@@ -45,6 +49,7 @@ public class GenInfo {
 	 * 是否引入BigDecimal
 	 */
 	private boolean hasBigDecimal;
+	private boolean hasBlob;
 	public String getTableName() {
 		return tableName;
 	}
@@ -104,6 +109,18 @@ public class GenInfo {
 	}
 	public void setTableComment(String tableComment) {
 		this.tableComment = tableComment;
+	}
+	public boolean isHasBlob() {
+		return hasBlob;
+	}
+	public void setHasBlob(boolean hasBlob) {
+		this.hasBlob = hasBlob;
+	}
+	public String getPkJavaType() {
+		return pkJavaType;
+	}
+	public void setPkJavaType(String pkJavaType) {
+		this.pkJavaType = pkJavaType;
 	}
 	
 }
