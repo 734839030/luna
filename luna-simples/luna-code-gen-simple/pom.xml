@@ -14,7 +14,7 @@
   		<dependency>
 				<groupId>com.seezoon</groupId>
 				<artifactId>luna-code-gen</artifactId>
-				<scope>test</scope>
+				<!-- <scope>test</scope> -->
 		</dependency>
   </dependencies>
 </project>

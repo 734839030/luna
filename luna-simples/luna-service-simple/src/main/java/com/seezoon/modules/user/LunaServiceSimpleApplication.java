@@ -1,4 +1,4 @@
-package com.seezoon.service.simple;
+package com.seezoon.modules.user;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

@@ -1,4 +1,4 @@
-package com.seezoon.service.simple;
+package com.seezoon.modules.user;
 
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;

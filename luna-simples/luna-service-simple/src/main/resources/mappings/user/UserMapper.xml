@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.seezoon.modules.user.dao.UserDao" >
+  <resultMap id="BaseResultMap" type="com.seezoon.modules.user.entity.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+  id,name,age,birthday,create_by,create_date,update_by,update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where 
+    	 id =  #{id}
+  </select>
+  <select id="findList" resultMap="BaseResultMap" parameterType="com.seezoon.modules.user.entity.User" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    <where>
+    		<if test="id !=null">
+    		AND id =  #{id}
+    		</if>
+    		<if test="name !=null and name!=''">
+    		AND name =  #{name}
+    		</if>
+    		<if test="age !=null">
+    		AND age =  #{age}
+    		</if>
+    		<if test="birthday !=null">
+    		AND birthday =  #{birthday}
+    		</if>
+    		<if test="createBy !=null and createBy!=''">
+    		AND create_by =  #{createBy}
+    		</if>
+    		<if test="createDate !=null">
+    		AND create_date =  #{createDate}
+    		</if>
+    		<if test="updateBy !=null and updateBy!=''">
+    		AND update_by =  #{updateBy}
+    		</if>
+    		<if test="updateDate !=null">
+    		AND update_date =  #{updateDate}
+    		</if>
+    </where>
+	<choose>
+    <when test="sortField != null and sortField != '' and direction != null and direction !=''">
+    order by ${sortField} ${direction}
+    </when>
+    <otherwise>
+   	<!-- 默认排序设置 -->
+  				order by create_date desc
+    </otherwise>
+    </choose>
+  </select>
+  <delete id="deleteByPrimaryKey" >
+    delete from user
+   where 
+    	 id =  #{id}
+  </delete>
+  <insert id="insert" parameterType="com.seezoon.modules.user.entity.User" >
+    insert into user (name,age,birthday,create_by,create_date,update_by,update_date)
+    values (#{name},#{age},#{birthday},#{createBy},#{createDate},#{updateBy},#{updateDate})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.seezoon.modules.user.entity.User" >
+    update user
+    <set>
+      <if test="name != null" >
+        name = #{name},
+      </if>
+      <if test="age != null" >
+        age = #{age},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate},
+      </if>
+    </set>
+   where 
+    	 id =  #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.seezoon.modules.user.entity.User" >
+    update user
+    set 
+        name = #{name}
+        ,age = #{age}
+        ,birthday = #{birthday}
+        ,update_by = #{updateBy}
+        ,update_date = #{updateDate}
+    where 
+    	 id =  #{id}
+  </update>
+</mapper>
