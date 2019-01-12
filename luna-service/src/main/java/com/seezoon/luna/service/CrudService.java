@@ -26,7 +26,7 @@ import com.seezoon.luna.entity.BaseEntity;
  * @param <D>
  * @param <T>
  */
-public class CrudService<D extends CrudDao<T>, T extends BaseEntity> extends BaseTransactionService {
+public class CrudService<D extends CrudDao<T>, T extends BaseEntity<?>> extends BaseTransactionService {
 
 	@Autowired
 	protected D d;

@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.seezoon.modules.user.dao.UserDao" >
   <resultMap id="BaseResultMap" type="com.seezoon.modules.user.entity.User" >
-    <id column="id" property="id" jdbcType="VARCHAR" />
-    <id column="name" property="name" jdbcType="VARCHAR" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="age" property="age" jdbcType="INTEGER" />
     <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
     <result column="create_by" property="createBy" jdbcType="VARCHAR" />
@@ -15,20 +15,19 @@
   <sql id="Base_Column_List" >
   id,name,age,birthday,create_by,create_date,update_by,update_date
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Object" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Integer" >
     select 
     <include refid="Base_Column_List" />
     from user
     where 
     	 id =  #{id}
-    	AND name =  #{name}
   </select>
   <select id="findList" resultMap="BaseResultMap" parameterType="com.seezoon.modules.user.entity.User" >
     select 
     <include refid="Base_Column_List" />
     from user
     <where>
-    		<if test="id !=null and id!=''">
+    		<if test="id !=null">
     		AND id =  #{id}
     		</if>
     		<if test="name !=null and name!=''">
@@ -67,15 +66,17 @@
     delete from user
    where 
     	 id =  #{id}
-    	AND name =  #{name}
   </delete>
   <insert id="insert" parameterType="com.seezoon.modules.user.entity.User" >
-    insert into user (id,name,age,birthday,create_by,create_date,update_by,update_date)
-    values (#{id},#{name},#{age},#{birthday},#{createBy},#{createDate},#{updateBy},#{updateDate})
+    insert into user (name,age,birthday,create_by,create_date,update_by,update_date)
+    values (#{name},#{age},#{birthday},#{createBy},#{createDate},#{updateBy},#{updateDate})
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.seezoon.modules.user.entity.User" >
     update user
     <set>
+      <if test="name != null" >
+        name = #{name},
+      </if>
       <if test="age != null" >
         age = #{age},
       </if>
@@ -91,17 +92,16 @@
     </set>
    where 
     	 id =  #{id}
-    	AND name =  #{name}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.seezoon.modules.user.entity.User" >
     update user
     set 
-        age = #{age}
+        name = #{name}
+        ,age = #{age}
         ,birthday = #{birthday}
         ,update_by = #{updateBy}
         ,update_date = #{updateDate}
     where 
     	 id =  #{id}
-    	AND name =  #{name}
   </update>
 </mapper>

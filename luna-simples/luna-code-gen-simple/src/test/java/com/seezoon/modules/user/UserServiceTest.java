@@ -11,9 +11,14 @@ public class UserServiceTest extends BaseApplicationTest{
 	@Autowired
 	private UserService userService;
 	@Test
+	public void save() {
+		User user = new User();
+		user.setName("11");;
+		userService.save(user);
+	}
+	@Test
 	public void findList() {
 		User user = new User();
-		user.setId("111");
 		user.setName("11");;
 		//userService.save(user);
 		userService.findById(user);
