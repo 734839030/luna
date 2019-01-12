@@ -1,6 +1,6 @@
-package com.seezoon.service.modules.${moduleName}.entity;
+package com.seezoon.modules.${moduleName}.entity;
 
-import com.seezoon.boot.common.entity.BaseEntity;
+import com.seezoon.luna.entity.BaseEntity;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 <#if hasBigDecimal >

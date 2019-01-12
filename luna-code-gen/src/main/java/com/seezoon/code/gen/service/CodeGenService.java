@@ -2,7 +2,6 @@ package com.seezoon.code.gen.service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -46,14 +45,15 @@ public class CodeGenService {
 	 * 待生成模板
 	 */
 	public static final String[] ftls = {"mapper.xml.ftl","entity.java.ftl","dao.java.ftl","service.java.ftl"};
-	private static final String javaServiceFolder = "/seezoon-code/src/main/java/com/seezoon/service/modules/";
-	private static final String resourcesFolder = "/seezoon-code/src/main/resources/";
+	private static final String javaServiceFolder = "/src/main/java/com/seezoon/modules/";
+	private static final String resourcesFolder = "/src/main/resources/";
 
-	public void gen(String tableName) throws Exception {
+	public void gen(String tableName,String path) throws Exception {
 		Assert.hasLength(tableName,"tableName is empty");
+		Assert.hasLength(path,"path is empty");
 		GenInfo genInfo = this.getGenInfo(tableName);
 		byte[] codeGen = this.zipCode(genInfo);
-		FileOutputStream output = new FileOutputStream("/Users/hdf/Downloads/代码生成.zip");
+		FileOutputStream output = new FileOutputStream(new File(path, "seezoon-code.zip"));
 		IOUtils.write(codeGen, output);
 		output.flush();
 		output.close();
@@ -151,9 +151,10 @@ public class CodeGenService {
 			}
 		}
 		if (pkTypes.size() == 1) {
+			genInfo.setSinglePk(true);
 			genInfo.setPkJavaType(pkTypes.get(0).getJavaType());
 		} else {
-			genInfo.setPkJavaType("com.seezoon.service.modules." + genInfo.getModuleName() +".entity." + genInfo.getClassName());
+			genInfo.setPkJavaType("com.seezoon.modules." + genInfo.getModuleName() +".entity." + genInfo.getClassName());
 		}
 		genInfo.setColumns(columns);
 		return genInfo;

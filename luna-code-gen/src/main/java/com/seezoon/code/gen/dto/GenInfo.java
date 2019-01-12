@@ -17,6 +17,10 @@ public class GenInfo {
 	 */
 	private String pkJavaType;
 	/**
+	 * 单一主键
+	 */
+	private boolean singlePk;
+	/**
 	 * 是否自增主键
 	 */
 	private boolean autoIncrement;
@@ -121,6 +125,12 @@ public class GenInfo {
 	}
 	public void setPkJavaType(String pkJavaType) {
 		this.pkJavaType = pkJavaType;
+	}
+	public boolean isSinglePk() {
+		return singlePk;
+	}
+	public void setSinglePk(boolean singlePk) {
+		this.singlePk = singlePk;
 	}
 	
 }

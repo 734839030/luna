@@ -46,6 +46,11 @@
 	  			<artifactId>luna-utils</artifactId>
   			<version>${project.version}</version>
   			</dependency>
+  			<dependency>
+	  		    <groupId>com.seezoon</groupId>
+	  			<artifactId>luna-service</artifactId>
+  			<version>${project.version}</version>
+  			</dependency>
 			<dependency>
 				<groupId>com.seezoon</groupId>
 				<artifactId>luna-dependencies</artifactId>
