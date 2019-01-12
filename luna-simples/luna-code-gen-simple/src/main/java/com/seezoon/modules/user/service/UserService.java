@@ -8,7 +8,7 @@ import com.seezoon.modules.user.entity.User;
 /**
  * 用户信息Service
  * Copyright &copy; 2018 powered by huangdf, All rights reserved.
- * @author hdf 2019-1-12 19:03:37
+ * @author hdf 2019-1-12 19:43:34
  */
 @Service
 public class UserService extends CrudService<UserDao, User>{

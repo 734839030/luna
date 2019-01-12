@@ -154,7 +154,7 @@ public class CodeGenService {
 			genInfo.setSinglePk(true);
 			genInfo.setPkJavaType(pkTypes.get(0).getJavaType());
 		} else {
-			genInfo.setPkJavaType("com.seezoon.modules." + genInfo.getModuleName() +".entity." + genInfo.getClassName());
+			genInfo.setPkJavaType("Object");
 		}
 		genInfo.setColumns(columns);
 		return genInfo;

@@ -9,14 +9,14 @@ import java.util.Date;
  * 2018年3月31日
  * @param <PK>
  */
-public class BaseEntity extends QueryEntity{
+public class BaseEntity<PK> extends QueryEntity{
 	
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * 编号
 	 */
-	private Object id;
+	private PK id;
 	/**
 	 * 创建者(后台人员使用)
 	 */
@@ -43,11 +43,12 @@ public class BaseEntity extends QueryEntity{
 	private String remarks;
 	
 
-	public Object getId() {
+
+	public PK getId() {
 		return id;
 	}
 
-	public void setId(Object id) {
+	public void setId(PK id) {
 		this.id = id;
 	}
 

@@ -14,7 +14,7 @@ import java.util.Date;
  * Copyright &copy; 2018 powered by huangdf, All rights reserved.
  * @author hdf ${.now}
  */
-public class ${className} extends BaseEntity {
+public class ${className} extends BaseEntity<${pkJavaType}> {
 
    private static final long serialVersionUID = 1L;
 <#list columns as columnInfo>

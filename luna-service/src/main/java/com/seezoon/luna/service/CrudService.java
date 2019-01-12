@@ -1,17 +1,23 @@
 package com.seezoon.luna.service;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.util.ReflectionUtils;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.seezoon.luna.dao.CrudDao;
 import com.seezoon.luna.entity.BaseEntity;
+
 
 /**
  * 增删改查
@@ -33,10 +39,25 @@ public class CrudService<D extends CrudDao<T>, T extends BaseEntity> extends Bas
 			t.setCreateBy(this.getUserId());
 		}
 		t.setUpdateBy(t.getCreateBy());
+		//自增主键的insert sql 不能出现插入id 
+		if (null == t.getId() || StringUtils.isEmpty(t.getId().toString())) {
+			Class<?> clazz = t.getClass();  
+		    Type type = clazz.getGenericSuperclass();  
+		    ParameterizedType parameterizedType = (ParameterizedType) type;  
+		    if (parameterizedType.getActualTypeArguments()[0].equals(String.class)) {
+		    		//t.setId(IdGen.uuid()); 这个要是编译可以过去就不用这么麻烦去获取主键类型
+		    		Field findField = ReflectionUtils.findField(clazz, "id");
+		    		try {
+		    			    findField.setAccessible(true);
+						findField.set(t, UUID.randomUUID().toString().replace("-", ""));
+				} catch (Exception e) {
+					logger.error("set id error:",e);
+				} 
+		   }
+		}
 		int cnt = d.insert(t);
 		return cnt;
 	}
-
 	public int updateSelective(T t) {
 		Assert.notNull(t, "更新对象为空");
 		Assert.notNull(t.getId(), "更新对象id为空");

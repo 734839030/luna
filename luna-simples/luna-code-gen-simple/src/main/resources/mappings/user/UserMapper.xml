@@ -15,7 +15,7 @@
   <sql id="Base_Column_List" >
   id,name,age,birthday,create_by,create_date,update_by,update_date
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.seezoon.modules.user.entity.User" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Object" >
     select 
     <include refid="Base_Column_List" />
     from user
