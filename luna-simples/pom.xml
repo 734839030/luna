@@ -6,7 +6,7 @@
 	<groupId>com.seezoon</groupId>
 	<artifactId>luna-simples</artifactId>
 	<name>luna-simples</name>
-	<version>1.0.1-RELEASE</version>
+	<version>1.0.2-RELEASE</version>
 	<packaging>pom</packaging>
 
 	<modules>
